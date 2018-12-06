@@ -25,12 +25,12 @@ export class AtistTrastListComponent implements OnInit {
   }
   getTrack(param) {
     this.itunes.getTracks(param)
-      .subscribe( res => this.setTracks(res)) 
+      .then( res => this.tracks = res['results'].slice(1)) 
   }
-  setTracks(res) {
-    console.log(res);
-    this.tracks = res['results'].slice(1);
-  }
+  // setTracks(res) {
+  //   console.log(res);
+  //   this.tracks = res['results'].slice(1);
+  // }
 
   ngOnInit() {
    this.getID();

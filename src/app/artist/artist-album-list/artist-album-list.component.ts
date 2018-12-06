@@ -25,12 +25,13 @@ export class ArtistAlbumListComponent implements OnInit {
   }
   getAlbum(param) {
     this.itunes.getAlbums(param)
-      .subscribe(
-        res => this.setAlbum(res)
+      .then(
+        // res => this.setAlbum(res)                // Observable
+        res => this.album = res['results'].slice(1)  //Promise
       )
   }
-  setAlbum(res) {
-    console.log(res);
-    this.album = res['results'].slice(1);
-  }
+  // setAlbum(res) {
+  //   console.log(res);
+  //   this.album = res['results'].slice(1);
+  // }
 }

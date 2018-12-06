@@ -7,7 +7,7 @@ import { SearchService } from '../search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  song;
+  song= [];
   constructor(
     private itunes: SearchService
   ) { }
@@ -16,8 +16,16 @@ export class SearchComponent implements OnInit {
   }
 
   search(input: HTMLInputElement) {
-   this.itunes.getList(input.value); 
+   this.itunes.getList(input.value)
+   .then( res => 
+      // this.setSong(res)
+      this.song = res['results']
+     );
    input.value = '';
   }
 
+  // setSong(param) {
+  //   console.log(param);
+  //   this.song = param['results'];
+  // }
 }

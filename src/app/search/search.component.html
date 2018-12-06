@@ -7,7 +7,7 @@
   <div class="list-group">
       <a  [routerLink]="[ '/artist',item.artistId]"
        class="list-group-item"
-        *ngFor="let item of itunes.result">
+        *ngFor="let item of song">
         <img src="{{item.artworkUrl30}}" alt="{{item.trackName}}">
          {{item.trackName}} by {{item.artistName}}
         </a> <br>

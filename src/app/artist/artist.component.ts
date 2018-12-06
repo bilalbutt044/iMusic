@@ -16,21 +16,25 @@ export class ArtistComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.route.params.subscribe(
-      param => 
-      this.itunes.getArtist(param)
-      .subscribe(
-        res => {
-          this.setArtist(res['results'])
-        }
-      )
-    )
-    // this.itunes
+    this.getId();
   }
 
+  getId() {
+    this.route.params.subscribe( 
+      param => 
+      this.setArtist(param)
+    )
+  }
   setArtist(term) {
-    console.log(term);
-    this.artist = term[0];
-    console.log(this.artist);
+    this.itunes.getArtist(term)
+      .then(
+        res => {
+          // this.setArtist(res['results'])
+          this.artist = res['results'][0];
+        }
+      )
+    // console.log(term);
+    // this.artist = term[0];
+    // console.log(this.artist);
   }
 }
