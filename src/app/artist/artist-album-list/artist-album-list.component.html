@@ -1,0 +1,13 @@
+
+<div class="container">
+    <ul class="list-group">
+        <li class="list-group-item"
+            *ngFor="let track of album">
+          <img src="{{track.artworkUrl60}}">
+          <a target="_blank"
+             href="{{track.artistViewUrl}}">{{ track.collectionName }}
+          </a>
+        </li>
+      </ul>
+    </div>
+

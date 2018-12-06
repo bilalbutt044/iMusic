@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="input-group"> 
+    <input type="text"  placeholder="e.g john legend" #input>
+    <button  (click)="search(input)">search</button> 
+  </div>  
+
+  <div class="list-group">
+      <a  [routerLink]="[ '/artist',item.artistId]"
+       class="list-group-item"
+        *ngFor="let item of itunes.result">
+        <img src="{{item.artworkUrl30}}" alt="{{item.trackName}}">
+         {{item.trackName}} by {{item.artistName}}
+        </a> <br>
+  </div>  
+</div>
+
+
+
