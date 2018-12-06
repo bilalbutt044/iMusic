@@ -7,7 +7,8 @@ import { SearchService } from '../search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  song= [];
+  private song= [];
+  private loading: boolean = false;
   constructor(
     private itunes: SearchService
   ) { }
@@ -16,16 +17,20 @@ export class SearchComponent implements OnInit {
   }
 
   search(input: HTMLInputElement) {
+    this.loading = true;
    this.itunes.getList(input.value)
    .then( res => 
-      // this.setSong(res)
-      this.song = res['results']
+      this.setSong(res)
+      // this.song = res['results'],
+      
      );
    input.value = '';
+  //  this.loading = false;
   }
 
-  // setSong(param) {
-  //   console.log(param);
-  //   this.song = param['results'];
-  // }
+  setSong(param) {
+    console.log(param);
+    this.song = param['results'];
+    this.loading = false;
+  }
 }

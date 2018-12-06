@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AtistTrastListComponent implements OnInit {
   tracks= [];
+  private loading: boolean =false;
   constructor(
     private itunes: SearchService,
     private http: HttpClient,
@@ -24,13 +25,16 @@ export class AtistTrastListComponent implements OnInit {
     )
   }
   getTrack(param) {
+    this.loading = true;
     this.itunes.getTracks(param)
-      .then( res => this.tracks = res['results'].slice(1)) 
+      .then( res => this.setTracks(res) ) 
   }
-  // setTracks(res) {
-  //   console.log(res);
-  //   this.tracks = res['results'].slice(1);
-  // }
+  setTracks(res) {
+    
+    console.log(res);
+    this.tracks = res['results'].slice(1);
+    this.loading = false;
+  }
 
   ngOnInit() {
    this.getID();

@@ -4,6 +4,9 @@
     <button  (click)="search(input)">search</button> 
   </div>  
 
+  <div style="text-align:center">
+    <p *ngIf="loading">loading</p>
+  </div>
   <div class="list-group">
       <a  [routerLink]="[ '/artist',item.artistId]"
        class="list-group-item"

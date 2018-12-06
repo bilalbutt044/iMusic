@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ArtistAlbumListComponent implements OnInit {
   album= [];
+  private loading: boolean = false;
   constructor(
     private itunes: SearchService,
     private route: ActivatedRoute
@@ -24,14 +25,16 @@ export class ArtistAlbumListComponent implements OnInit {
     )
   }
   getAlbum(param) {
+    this.loading = true;
     this.itunes.getAlbums(param)
       .then(
-        // res => this.setAlbum(res)                // Observable
-        res => this.album = res['results'].slice(1)  //Promise
+        res => this.setAlbum(res)                // Observable
+        // res => this.album = res['results'].slice(1)  //Promise
       )
   }
-  // setAlbum(res) {
-  //   console.log(res);
-  //   this.album = res['results'].slice(1);
-  // }
+  setAlbum(res) {
+    console.log(res);
+    this.album = res['results'].slice(1);
+    this.loading = false;
+  }
 }

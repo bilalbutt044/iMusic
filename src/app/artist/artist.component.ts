@@ -10,6 +10,7 @@ import { SearchService } from '../search.service';
 export class ArtistComponent implements OnInit {
   id: number;
   artist =[];
+  
   constructor(
     private route: ActivatedRoute,
     private itunes: SearchService
@@ -22,19 +23,18 @@ export class ArtistComponent implements OnInit {
   getId() {
     this.route.params.subscribe( 
       param => 
-      this.setArtist(param)
+      this.getArtist(param)
     )
   }
-  setArtist(term) {
-    this.itunes.getArtist(term)
-      .then(
-        res => {
-          // this.setArtist(res['results'])
-          this.artist = res['results'][0];
-        }
-      )
-    // console.log(term);
-    // this.artist = term[0];
-    // console.log(this.artist);
+
+  getArtist(param) {
+   
+    this.itunes.getArtist(param)
+    .then( res => this.setArtist(res));     
+  }
+
+  setArtist(data) {
+    this.artist = data['results'][0];
+   
   }
 }
